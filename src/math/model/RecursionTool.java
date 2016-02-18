@@ -2,26 +2,42 @@ package math.model;
 
 public class RecursionTool
 {
-	public double fibonacciNumber(double d)
-	{
-		if(d < 0)
+
+	public double fibonacciNumber(double pos)
+	{	
+
+		double prevPos = 1;
+		double prevPrevPos = 0;
+		int loopValue = 1;
+		double curPos = 0;
+		
+		if(pos < 0)
 		{
-			return Double.MIN_VALUE;
+			return Integer.MIN_VALUE;
 		}
-	
-		if(d == 0 || d ==1)
+
+		while(loopValue < pos)
 		{
-			return 1;
+			curPos = prevPos + prevPrevPos;
+			prevPrevPos = prevPos;
+			prevPos = curPos;
+			loopValue++;
 		}
-		else
+		if(pos == 0 || pos == 1)
 		{
-			return fibonacciNumber(d - 1) + fibonacciNumber(d -2);
+			curPos =1;
 		}
+
+		
+		return curPos;
+
 	}
 
 
 public double factorialNumber(double pos)
 {
+	double resultValue = 1;
+	
 	if(pos < 0)
 	{
 		return Integer.MIN_VALUE;
@@ -34,12 +50,15 @@ public double factorialNumber(double pos)
 		return 1;
 	}
 
-	else
+	
+	for(int loopValue = 1; loopValue <= pos; loopValue++)
 	{
-		return pos * factorialNumber(pos - 1);
+		resultValue = resultValue * loopValue;
 	}
-}
+	
+	return resultValue;
 
+}
 
 
 
